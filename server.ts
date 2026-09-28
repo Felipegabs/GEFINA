@@ -1,15 +1,25 @@
 //GEFINA
-import { createServer } from 'node:http';
+
 import send from './send.ts';
 
-createServer(function (request, response) {
-    if (request.url !== '/api/health') {
-        send(response, 404,{ message: 'recurso nao encontrado'});
-        return;}
-   send(response, 200,{status: "ok"});
-        
-    
 
-   
-    }).listen(3000);
-//gefina
+import express from 'express';
+
+const app = express();
+
+app.use(function(request, response, next){
+    console.log(request.method + " " + request.url);next();
+
+});
+app.get('/api/health', function (request, response) {
+    // send(response, 200, {status: 'ok'});
+    response.status(200).json({ status: "ok" })
+});
+
+app.use(function (request, response) {
+   response.status(404).json({ message:'recurso não encontrado.'});
+});
+
+
+
+app.listen(3000);

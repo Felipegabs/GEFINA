@@ -62,9 +62,22 @@ app.get('/api/health', function (request, response) {
     // send(response, 200, {status: 'ok'});
     response.status(200).json({ status: "ok" })
 });
-app.get('/api/invoices', function(request, response)){
+app.get('/api/invoices', function(request, response){
     response.status(200).json(invoices);
-}
+});
+
+app.get('/api/invoices/id/:id', function (request, response){
+    const id = +request.params.id;
+    for (let i =0; i < invoices.length; i++){
+        if (invoices[i].id === id){
+            response.status(200).json(invoices[i]);
+            return;
+        }
+    }
+    response.status(404).json({error:{
+        message:'fatura não encontrada'
+    }})
+});
 
 app.use(function (request, response) {
     response.status(404).json({ message: 'recurso não encontrado.' });

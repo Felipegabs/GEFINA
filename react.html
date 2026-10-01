@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+</head>
+
+<body>
+    <h1>React</h1>
+
+    <div></div>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script type="text/babel">
+        const root = document.querySelector('div');
+
+        const listLabel = [
+            { id: 1, label: 'send' },
+            { id: 2, label: 'Reset' },
+            { id: 3, label: 'Cancel' },
+        ]
+
+        const Button = function (props) {
+
+            return <button>props.text</button>;
+        }
+
+        function insert() {
+
+
+            for (let i = 0; i < listLabel; i++) {
+                <Button text={listLabel[i].label} />
+            }
+        }
+        const App = function () {
+            return <>
+                
+{
+    listLabel.map(function (label){
+        return <Button key={label.id} text={label.label}/>
+    })
+}
+                
+            </>
+        }
+        ReactDOM.createRoot(root).render(<App />);
+
+    </script>
+</body>
+
+</html>

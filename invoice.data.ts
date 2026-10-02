@@ -16,4 +16,4 @@ interface Invoice {
 }
 
 
-export default invoices;
+export default Invoice;

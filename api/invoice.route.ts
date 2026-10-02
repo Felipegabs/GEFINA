@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 const router = Router();
 
-import invoices from './invoice.data.ts';
+import invoices from './invoice.data.ts'; './invoice.data.ts';
 
 router.get('/', (_request, response) => {
   response.status(200).json(invoices);
